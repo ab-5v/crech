@@ -49,3 +49,42 @@ describe('decode', function() {
     });
 
 });
+
+describe('encode', function() {
+
+    var tests = [
+
+        [[0, 's1', 'f1']],
+        'f1!s1!',
+
+        [[1, 's1', 'f1']],
+        'f1!!s1',
+
+        [[0, 's1', 'f1'], [0, 's2', 'f1']],
+        'f1!s1,s2!',
+
+        [[0, 's1', 'f1'], [1, 's2', 'f1']],
+        'f1!s1!s2',
+
+        [[0, 's1', 'f1'], [1, 's2', 'f2']],
+        'f1!s1!!f2!!s2',
+
+        [[0, 's1', 'f1'], [0, 's2', 'f2']],
+        'f1!s1!!f2!s2!',
+
+        [[0, 's1', 'f1'], [0, 's1', 'f2']],
+        'f1!s1!!f2!s1!',
+
+        [[0, 's1', 'f1'], [0, 's2', 'f1'], [1, 's3', 'f2'], [1, 's4', 'f2']],
+        'f1!s1,s2!!f2!!s3,s4',
+    ];
+
+    tests.forEach(function(_, i) {
+        if (i % 2) { return; }
+
+        it('should encode to "' + tests[i+1] + '"', function() {
+            expect( crech.encode(tests[i].reverse(), '!') ).to.eql( tests[i+1] );
+        });
+    });
+
+});
