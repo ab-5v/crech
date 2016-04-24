@@ -1,0 +1,30 @@
+{
+  "name": "crech",
+  "version": "1.0.0",
+  "description": "csscov report compression tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/spec",
+    "start": "gulp watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artjock/crech.git"
+  },
+  "author": "Artur Burtsev <artjock@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artjock/crech/issues"
+  },
+  "homepage": "https://github.com/artjock/crech#readme",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "gulp": "^3.9.1",
+    "gulp-batch": "^1.0.5",
+    "gulp-cli": "^1.2.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-watch": "^4.3.5",
+    "mocha": "^2.4.5"
+  }
+}
