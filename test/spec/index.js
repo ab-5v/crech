@@ -1,4 +1,5 @@
 var crech = require('../../index.js');
+var sinon = require('sinon');
 var expect = require('expect.js');
 
 describe('decode', function() {
@@ -9,6 +10,24 @@ describe('decode', function() {
         this.cb = function(sel, group, bit) {
             that.parsed[group+sel] = bit;
         };
+
+        sinon.spy(this, 'cb');
+    });
+
+    it('should ignore none string values', function() {
+        crech.decode(null);
+        crech.decode(undefined);
+        crech.decode({});
+
+        expect( this.cb.called ).to.be( false );
+    });
+
+    it('should ignore values with a wrong checksum', function() {
+        crech.decode('f', '%');
+        crech.decode('f%a', '%');
+        crech.decode('f%a%b%f2%', '%');
+        
+        expect( this.cb.called ).to.be( false );
     });
 
     [

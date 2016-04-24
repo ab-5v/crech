@@ -7,9 +7,13 @@
  * @param {function} cb
  */
 function crechDecode(str, sep, cb) {
+    if (typeof str !== 'string') { return; }
+
     var group, bit, selectors, si, sl;
     var parts = str.split(sep), pi;
     var partsLength = parts.length;
+
+    if (partsLength % 3) { return; }
 
     for (pi = 0; pi < partsLength; pi+=3) {
         group = parts[pi];
